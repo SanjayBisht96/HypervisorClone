@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Deployment, Cluster
-from .tasks import create_deployment
+from .tasks import deployment_scheduler
 
 @api_view(['POST'])
 def create_deployment_view(request):
@@ -26,7 +26,9 @@ def create_deployment_view(request):
         status='queued'
     )
 
-    # Trigger Celery task
-    create_deployment.delay(deployment.id)
-
     return Response({'message': 'Deployment created and queued', 'deployment_id': deployment.id})
+    
+@api_view(['GET'])
+def trigger_deployment(request):
+    deployment_scheduler.delay()
+    return Response({'message': 'Deployment scheduled'})
