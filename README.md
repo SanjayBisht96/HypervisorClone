@@ -76,6 +76,52 @@ Below is a high-level description of the UML diagram:
     ```
 
 **DB UML Diagram**:
+
+
+User
+| Column           | Type   | Notes             |
+| ---------------- | ------ | ----------------- |
+| id               | PK     | Primary key       |
+| username         | string |                   |
+| email            | string |                   |
+| password         | string |                   |
+| organization\_id | FK     | → Organization.id |
+
+
+Organization
+| Column      | Type     | Notes       |
+| ----------- | -------- | ----------- |
+| id          | PK       | Primary key |
+| name        | string   |             |
+| created\_at | datetime |             |
+
+
+Cluster
+| Column      | Type     | Notes       |
+| ----------- | -------- | ----------- |
+| id          | PK       | Primary key |
+| name        | string   |             |
+| ram         | integer  | In GB       |
+| cpu         | integer  |             |
+| gpu         | integer  |             |
+| created\_at | datetime |             |
+
+
+
+Deployment
+| Column        | Type     | Notes               |
+| ------------- | -------- | ------------------- |
+| id            | PK       | Primary key         |
+| cluster\_id   | FK       | → Cluster.id        |
+| docker\_image | string   | Docker image name   |
+| ram\_required | integer  | In GB               |
+| cpu\_required | integer  |                     |
+| gpu\_required | integer  |                     |
+| priority      | integer  | Lower = higher pri. |
+| status        | string   | E.g., pending, done |
+| created\_at   | datetime |                     |
+
+
 +-------------------+
 |      User         |
 +-------------------+
