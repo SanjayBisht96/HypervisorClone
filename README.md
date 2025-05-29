@@ -75,6 +75,14 @@ Below is a high-level description of the UML diagram:
     docker-compose up
     ```
 
+4. **Running tests**:
+```bash
+   python -m venv venv
+   .\venv\Scripts\Activate
+   pip install -r requirements.txt
+   pytest ./apps/tests/test_integration.py
+   ```
+
 **DB UML Diagram**:
 
 
