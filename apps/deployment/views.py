@@ -3,7 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Deployment, Cluster
+from .models import Deployment
+from apps.cluster.models import Cluster
 from .tasks import deployment_scheduler
 
 @api_view(['POST'])
